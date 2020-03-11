@@ -35,7 +35,7 @@ func (h Service) collectMbidInfo()  {
 }
 
 func (h Service) getArtistInfoFromMusicBrainz() (*MusicBraizResponse, error) {
-	req,err := http.NewRequest(http.MethodGet,"https://musicbrainz.org/ws/2/artist/53b106e7-0cc6-42cc-ac95-ed8d30a3a98e",nil )
+	req,err := http.NewRequest(http.MethodGet,"https://musicbrainz.org/ws/2/artist/f27ec8db-af05-4f36-916e-3d57f91ecf5e?&fmt=json&inc=url-rels+release-groups",nil )
 	if err!= nil{
 		return nil, errors.New("unable to construct music brainz request")
 	}
