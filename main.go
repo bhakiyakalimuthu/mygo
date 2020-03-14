@@ -10,7 +10,8 @@ import (
 )
 
 func main()  {
-	service := internal.NewService(zap.L(),NewHttpClient())
+	cfg := internal.Config{}
+	service := internal.NewService(zap.L(),NewHttpClient(),cfg)
 	controller:= internal.NewController(zap.L(),service)
 	x:= controller.RegisterRoute()
 	http.ListenAndServe(":8080",x)

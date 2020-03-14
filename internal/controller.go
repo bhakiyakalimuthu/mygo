@@ -16,6 +16,7 @@ const (
 type Controller struct {
 	logger *zap.Logger
 	service *Service
+	config
 }
 
 

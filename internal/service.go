@@ -19,14 +19,16 @@ type ArtistService interface {
 type Service struct {
 	logger *zap.Logger
 	client http.Client
+	config Config
 }
 
 
 
-func NewService(logger *zap.Logger, client http.Client) *Service {
+func NewService(logger *zap.Logger, client http.Client, config Config) *Service {
 	return &Service{
 		logger: logger,
 		client: client,
+		config: config,
 	}
 }
 
@@ -35,7 +37,7 @@ func (h Service) collectMbidInfo()  {
 }
 
 func (h Service) getArtistInfoFromMusicBrainz() (*MusicBraizResponse, error) {
-	req,err := http.NewRequest(http.MethodGet,"https://musicbrainz.org/ws/2/artist/f27ec8db-af05-4f36-916e-3d57f91ecf5e?&fmt=json&inc=url-rels+release-groups",nil )
+	req,err := http.NewRequest(http.MethodGet,h.config.HostName,nil )
 	if err!= nil{
 		return nil, errors.New("unable to construct music brainz request")
 	}
